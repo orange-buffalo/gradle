@@ -155,7 +155,6 @@ class KotlinDslScriptsModelCrossVersionSpec extends AbstractKotlinScriptModelCro
 
         given:
         withBuildSrc()
-        withDefaultSettings()
         buildFileKts << ""
 
         when:
@@ -230,17 +229,15 @@ class KotlinDslScriptsModelCrossVersionSpec extends AbstractKotlinScriptModelCro
                 }
             }
         """)
-        def settings = withDefaultSettings().tap {
-            append("""
-                buildscript {
-                    dependencies {
-                        classpath(files("${escapeString(settingsJar)}"))
-                    }
+        def settings = withSettings("""
+            buildscript {
+                dependencies {
+                    classpath(files("${escapeString(settingsJar)}"))
                 }
-                apply(from = "some.gradle.kts")
-                include("a", "b")
-            """)
-        }
+            }
+            apply(from = "some.gradle.kts")
+            include("a", "b")
+        """)
         def root = withBuildScript("""
             buildscript {
                 dependencies {
@@ -262,7 +259,6 @@ class KotlinDslScriptsModelCrossVersionSpec extends AbstractKotlinScriptModelCro
                 `kotlin-dsl`
             }
             buildscript {
-                $repositoriesBlock
                 dependencies {
                     classpath(files("${escapeString(bJar)}"))
                 }
