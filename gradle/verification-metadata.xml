@@ -125,6 +125,7 @@
             <trusting group="org.junit.platform"/>
          </trusted-key>
          <trusted-key id="ff986d345395d4ad1dc48137bb6fd5ad91d01857" group="org.seleniumhq.selenium"/>
+         <trusted-key id="1fa37fbe4453c1073e7ef61d6449005f96bc97a3" group="de.undercouch"/>
       </trusted-keys>
    </configuration>
    <components>
@@ -582,11 +583,6 @@
       <component group="de.rototor.pdfbox" name="graphics2d" version="0.12">
          <artifact name="graphics2d-0.12.jar">
             <pgp value="8608e5c5e09dcce835b50bcd1158d77cdb3a70bb"/>
-         </artifact>
-      </component>
-      <component group="de.undercouch" name="gradle-download-task" version="3.4.3">
-         <artifact name="gradle-download-task-3.4.3.jar">
-            <pgp value="1fa37fbe4453c1073e7ef61d6449005f96bc97a3"/>
          </artifact>
       </component>
       <component group="docbook" name="docbook-xsl" version="1.75.2">
