@@ -16,9 +16,9 @@
 
 package org.gradle.kotlin.dsl.plugins.dsl
 
-import org.gradle.integtests.fixtures.ToBeFixedForInstantExecution
 import org.gradle.integtests.fixtures.RepoScriptBlockUtil.jcenterRepositoryDefinition
 import org.gradle.integtests.fixtures.RepoScriptBlockUtil.kotlinEapRepositoryDefinition
+import org.gradle.integtests.fixtures.UnsupportedWithInstantExecution
 import org.gradle.kotlin.dsl.embeddedKotlinVersion
 import org.gradle.kotlin.dsl.fixtures.AbstractPluginTest
 import org.gradle.test.fixtures.dsl.GradleDsl
@@ -56,7 +56,7 @@ class KotlinDslPluginGradlePluginCrossVersionSmokeTest(
 
     @Test
     @LeaksFileHandles("Kotlin Compiler Daemon working directory")
-    @ToBeFixedForInstantExecution
+    @UnsupportedWithInstantExecution
     fun `kotlin-dsl plugin in buildSrc and production code using kotlin-gradle-plugin `() {
 
         requireGradleDistributionOnEmbeddedExecuter()
