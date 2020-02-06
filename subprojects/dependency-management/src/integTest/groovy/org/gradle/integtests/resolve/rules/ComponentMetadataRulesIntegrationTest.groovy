@@ -15,10 +15,9 @@
  */
 package org.gradle.integtests.resolve.rules
 
-import org.gradle.integtests.fixtures.ToBeFixedForInstantExecution
 import org.gradle.integtests.fixtures.GradleMetadataResolveRunner
 import org.gradle.integtests.fixtures.RequiredFeature
-import org.gradle.integtests.fixtures.RequiredFeatures
+import org.gradle.integtests.fixtures.ToBeFixedForInstantExecution
 import org.gradle.integtests.resolve.AbstractModuleDependencyResolveTest
 import spock.lang.Issue
 
@@ -172,7 +171,7 @@ dependencies {
 
             class VerifyingRule implements ComponentMetadataRule {
                 static boolean ruleInvoked
-                
+
                 public void execute(ComponentMetadataContext context) {
                     ruleInvoked = true
                 }
@@ -212,9 +211,9 @@ dependencies {
                 }
             }
 
-            resolve.doLast { 
+            resolve.doLast {
                 assert rulesInvoked == [ '1.0', '1.0', '1.0', '1.0', '1.0' ]
-                assert VerifyingRule.ruleInvoked 
+                assert VerifyingRule.ruleInvoked
             }
         """
 
@@ -239,7 +238,7 @@ dependencies {
 
             class InvokedRule implements ComponentMetadataRule {
                 static boolean ruleInvoked
-                
+
                 public void execute(ComponentMetadataContext context) {
                     ruleInvoked = true
                 }
@@ -247,7 +246,7 @@ dependencies {
 
             class NotInvokedRule implements ComponentMetadataRule {
                 static boolean ruleInvoked
-                
+
                 public void execute(ComponentMetadataContext context) {
                     ruleInvoked = true
                 }
@@ -334,9 +333,7 @@ dependencies {
 - Method doSomething(java.lang.String) is not a valid rule method: First parameter of a rule method must be of type org.gradle.api.artifacts.ComponentMetadataDetails""")
     }
 
-    @RequiredFeatures(
-        @RequiredFeature(feature = GradleMetadataResolveRunner.REPOSITORY_TYPE, value = "maven")
-    )
+    @RequiredFeature(feature = GradleMetadataResolveRunner.REPOSITORY_TYPE, value = "maven")
     @ToBeFixedForInstantExecution
     def "rule that accepts IvyModuleDescriptor isn't invoked for Maven component"() {
         given:
@@ -448,7 +445,7 @@ project (':sub') {
     }
     task res {
         doLast {
-            // If we resolve twice the modified component metadata for 'projectA' must not be cached in-memory 
+            // If we resolve twice the modified component metadata for 'projectA' must not be cached in-memory
             println configurations.conf.collect { it.name }
             println configurations.other.collect { it.name }
         }
