@@ -63,7 +63,17 @@ class CrossVersionPerformanceTestExecutionTest extends ResultSpecification {
         result.baseline("1.0").results << operation(totalTime: 100)
         result.baseline("1.0").results << operation(totalTime: 100)
         result.baseline("1.0").results << operation(totalTime: 100)
+        result.baseline("1.0").results << operation(totalTime: 100)
+        result.baseline("1.0").results << operation(totalTime: 100)
+        result.baseline("1.0").results << operation(totalTime: 100)
+        result.baseline("1.0").results << operation(totalTime: 100)
+        result.baseline("1.0").results << operation(totalTime: 100)
 
+        result.baseline("1.3").results << operation(totalTime: 110)
+        result.baseline("1.3").results << operation(totalTime: 110)
+        result.baseline("1.3").results << operation(totalTime: 111)
+        result.baseline("1.3").results << operation(totalTime: 111)
+        result.baseline("1.3").results << operation(totalTime: 111)
         result.baseline("1.3").results << operation(totalTime: 110)
         result.baseline("1.3").results << operation(totalTime: 110)
         result.baseline("1.3").results << operation(totalTime: 111)
@@ -76,13 +86,18 @@ class CrossVersionPerformanceTestExecutionTest extends ResultSpecification {
         result.current << operation(totalTime: 111)
         result.current << operation(totalTime: 111)
         result.current << operation(totalTime: 111)
+        result.current << operation(totalTime: 110)
+        result.current << operation(totalTime: 110)
+        result.current << operation(totalTime: 111)
+        result.current << operation(totalTime: 111)
+        result.current << operation(totalTime: 111)
 
         when:
         result.assertCurrentVersionHasNotRegressed()
 
         then:
         AssertionError e = thrown()
-        e.message.startsWith("Speed ${result.displayName}: we're slower than 1.0 with 99.9% confidence.")
+        e.message.startsWith("Speed ${result.displayName}: we're slower than 1.0 with 99% confidence.")
         e.message.contains('Difference: 11 ms slower (11 ms), 11.00%')
         !e.message.contains('1.3')
     }
