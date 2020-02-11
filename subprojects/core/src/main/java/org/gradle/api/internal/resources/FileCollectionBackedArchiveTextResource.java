@@ -22,12 +22,17 @@ import org.gradle.api.internal.file.FileOperations;
 import org.gradle.api.internal.file.TemporaryFileProvider;
 import org.gradle.api.internal.file.collections.LazilyInitializedFileCollection;
 import org.gradle.api.internal.tasks.TaskDependencyResolveContext;
+import org.gradle.api.tasks.Internal;
 import org.gradle.api.tasks.util.PatternSet;
 
 import java.io.File;
 import java.nio.charset.Charset;
 
 public class FileCollectionBackedArchiveTextResource extends FileCollectionBackedTextResource {
+
+    private final FileCollection fileCollection;
+    private final String path;
+
     public FileCollectionBackedArchiveTextResource(final FileOperations fileOperations,
                                                    final TemporaryFileProvider tempFileProvider,
                                                    final FileCollection fileCollection,
@@ -54,5 +59,17 @@ public class FileCollectionBackedArchiveTextResource extends FileCollectionBacke
                 context.add(fileCollection);
             }
         }, charset);
+        this.fileCollection = fileCollection;
+        this.path = path;
+    }
+
+    @Internal("Covered by inputFiles")
+    public File getArchiveFile() {
+        return fileCollection.getSingleFile();
+    }
+
+    @Internal("Covered by inputFiles")
+    public String getPath() {
+        return path;
     }
 }

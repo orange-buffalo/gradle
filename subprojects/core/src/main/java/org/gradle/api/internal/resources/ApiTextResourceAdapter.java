@@ -22,6 +22,7 @@ import org.gradle.api.internal.file.TemporaryFileProvider;
 import org.gradle.api.internal.tasks.TaskDependencyInternal;
 import org.gradle.api.resources.ResourceException;
 import org.gradle.api.resources.internal.TextResourceInternal;
+import org.gradle.api.tasks.Internal;
 import org.gradle.api.tasks.TaskDependency;
 import org.gradle.internal.resource.ResourceExceptions;
 import org.gradle.internal.resource.TextResource;
@@ -116,6 +117,11 @@ public class ApiTextResourceAdapter implements TextResourceInternal {
     @Override
     public String toString() {
         return getDisplayName();
+    }
+
+    @Internal("Covered by inputProperties")
+    public URI getUri() {
+        return uri;
     }
 
     private TextResource getWrappedTextResource() {

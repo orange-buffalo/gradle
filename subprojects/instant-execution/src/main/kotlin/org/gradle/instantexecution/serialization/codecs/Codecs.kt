@@ -38,6 +38,7 @@ import org.gradle.api.internal.provider.ValueSourceProviderFactory
 import org.gradle.api.invocation.Gradle
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.ProviderFactory
+import org.gradle.api.resources.ResourceHandler
 import org.gradle.api.services.internal.BuildServiceRegistryInternal
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.util.internal.PatternSpecFactory
@@ -120,6 +121,8 @@ class Codecs(
         bind(LoggerCodec)
 
         fileCollectionTypes(directoryFileTreeFactory, fileCollectionFactory)
+
+        bind(TextResourceCodec)
 
         bind(ClosureCodec)
         bind(GroovyMetaClassCodec)

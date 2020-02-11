@@ -20,6 +20,7 @@ import org.gradle.api.file.FileCollection;
 import org.gradle.api.internal.file.TemporaryFileProvider;
 import org.gradle.api.resources.ResourceException;
 import org.gradle.api.resources.internal.TextResourceInternal;
+import org.gradle.api.tasks.Internal;
 import org.gradle.api.tasks.TaskDependency;
 import org.gradle.internal.resource.ResourceExceptions;
 
@@ -111,5 +112,10 @@ public class FileCollectionBackedTextResource implements TextResourceInternal {
     @Override
     public FileCollection getInputFiles() {
         return fileCollection;
+    }
+
+    @Internal("Covered by inputProperties")
+    public Charset getCharset() {
+        return charset;
     }
 }
