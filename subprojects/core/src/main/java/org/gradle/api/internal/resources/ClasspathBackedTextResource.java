@@ -17,7 +17,6 @@
 package org.gradle.api.internal.resources;
 
 
-import com.google.common.base.Charsets;
 import com.google.common.io.CharSource;
 
 import java.io.BufferedReader;
