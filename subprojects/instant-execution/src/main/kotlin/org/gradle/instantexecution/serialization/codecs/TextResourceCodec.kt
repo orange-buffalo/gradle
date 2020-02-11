@@ -21,8 +21,10 @@ import org.gradle.api.internal.resources.ApiTextResourceAdapter
 import org.gradle.api.internal.resources.ClasspathBackedTextResource
 import org.gradle.api.internal.resources.FileCollectionBackedArchiveTextResource
 import org.gradle.api.internal.resources.FileCollectionBackedTextResource
+import org.gradle.api.internal.resources.StringBackedTextResource
 import org.gradle.api.resources.TextResource
 import org.gradle.api.resources.TextResourceFactory
+import org.gradle.instantexecution.extensions.uncheckedCast
 import org.gradle.instantexecution.serialization.Codec
 import org.gradle.instantexecution.serialization.ReadContext
 import org.gradle.instantexecution.serialization.WriteContext
@@ -57,9 +59,13 @@ object TextResourceCodec : Codec<TextResource> {
                 writeString(value.path)
                 writeString(value.charset.name())
             }
-            else -> {
+            is StringBackedTextResource -> {
                 writeSmallInt(STRING)
                 writeString(value.asString())
+            }
+            else -> {
+                writeSmallInt(OTHER)
+                write(value)
             }
         }
     }
@@ -70,30 +76,29 @@ object TextResourceCodec : Codec<TextResource> {
             ARCHIVE -> textResourceFactory.fromArchiveEntry(readFile(), readString(), readString())
             FILE_COLLECTION -> textResourceFactory.fromFile(readFile(), readString())
             CLASSPATH -> ClasspathBackedTextResource(readClass(), readString(), Charset.forName(readString()))
-            else -> textResourceFactory.fromString(readString())
+            STRING -> textResourceFactory.fromString(readString())
+            else -> read()!!.uncheckedCast()
         }
 
     private
     val ReadContext.textResourceFactory: TextResourceFactory
         get() = ownerService<FileOperations>().resources.text
+
+    private
+    const val API_ADAPTER = 1
+
+    private
+    const val ARCHIVE = 2
+
+    private
+    const val FILE_COLLECTION = 3
+
+    private
+    const val CLASSPATH = 4
+
+    private
+    const val STRING = 5
+
+    private
+    const val OTHER = 0
 }
-
-
-private
-const val STRING = 0
-
-
-private
-const val API_ADAPTER = 1
-
-
-private
-const val ARCHIVE = 2
-
-
-private
-const val FILE_COLLECTION = 3
-
-
-private
-const val CLASSPATH = 4
