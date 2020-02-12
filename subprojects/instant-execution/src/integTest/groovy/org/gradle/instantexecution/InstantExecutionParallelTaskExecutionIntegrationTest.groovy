@@ -36,10 +36,18 @@ class InstantExecutionParallelTaskExecutionIntegrationTest extends AbstractInsta
             include 'a', 'b', 'c'
         """
         buildFile << """
-            class SlowTask extends DefaultTask {
+            abstract class SlowTask extends DefaultTask {
+
+                @Input
+                abstract Property<String> getProjectName()
+
+                SlowTask() {
+                    projectName.value(project.name)
+                }
+
                 @TaskAction
                 def go() {
-                    ${server.callFromBuildUsingExpression("project.name")}
+                    ${server.callFromBuildUsingExpression("projectName.get()")}
                 }
             }
 
