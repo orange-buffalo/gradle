@@ -34,12 +34,15 @@ class BuildServiceParallelExecutionIntegrationTest extends AbstractIntegrationSp
             include 'a', 'b', 'c'
         """
         buildFile << """
-            allprojects {
-                task ping {
-                    doLast {
-                        ${blockingServer.callFromBuildUsingExpression("project.name")}
-                    }
+            abstract class Ping extends DefaultTask {
+                @Input abstract Property<String> getProjectName()
+                Ping() { projectName.value(project.name) }
+                @TaskAction def action() {
+                    ${blockingServer.callFromBuildUsingExpression("projectName.get()")}
                 }
+            }
+            allprojects {
+                tasks.register("ping", Ping)
             }
         """
     }
