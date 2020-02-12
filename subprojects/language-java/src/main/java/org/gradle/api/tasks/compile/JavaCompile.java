@@ -21,8 +21,9 @@ import org.gradle.api.Incubating;
 import org.gradle.api.JavaVersion;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.file.FileTree;
+import org.gradle.api.file.ProjectLayout;
+import org.gradle.api.internal.file.FileOperations;
 import org.gradle.api.internal.file.FileTreeInternal;
-import org.gradle.api.internal.project.ProjectInternal;
 import org.gradle.api.internal.tasks.JavaToolChainFactory;
 import org.gradle.api.internal.tasks.compile.CleaningJavaCompiler;
 import org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler;
@@ -107,7 +108,7 @@ public class JavaCompile extends AbstractCompile {
     @Deprecated
     @Internal
     protected FileTree getSources() {
-        return getProject().getLayout().files().getAsFileTree();
+        return getServices().get(ProjectLayout.class).files().getAsFileTree();
     }
 
     /**
@@ -170,7 +171,7 @@ public class JavaCompile extends AbstractCompile {
                 sources,
                 new JavaRecompilationSpecProvider(
                     getDeleter(),
-                    ((ProjectInternal) getProject()).getFileOperations(),
+                    getServices().get(FileOperations.class),
                     sources,
                     inputs.isIncremental(),
                     () -> inputs.getFileChanges(getStableSources()).iterator()
@@ -213,7 +214,7 @@ public class JavaCompile extends AbstractCompile {
     private DefaultJavaCompileSpec createSpec() {
         final DefaultJavaCompileSpec spec = new DefaultJavaCompileSpecFactory(compileOptions).create();
         spec.setDestinationDir(getDestinationDirectory().getAsFile().get());
-        spec.setWorkingDir(getProject().getProjectDir());
+        spec.setWorkingDir(getServices().get(ProjectLayout.class).getProjectDirectory().getAsFile());
         spec.setTempDir(getTemporaryDir());
         spec.setCompileClasspath(ImmutableList.copyOf(getClasspath()));
         spec.setAnnotationProcessorPath(compileOptions.getAnnotationProcessorPath() == null ? ImmutableList.of() : ImmutableList.copyOf(compileOptions.getAnnotationProcessorPath()));
