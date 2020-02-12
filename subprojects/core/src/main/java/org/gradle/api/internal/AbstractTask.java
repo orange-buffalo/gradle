@@ -27,6 +27,7 @@ import org.codehaus.groovy.runtime.InvokerInvocationException;
 import org.gradle.api.Action;
 import org.gradle.api.AntBuilder;
 import org.gradle.api.Describable;
+import org.gradle.api.InvalidUserCodeException;
 import org.gradle.api.InvalidUserDataException;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
@@ -211,6 +212,10 @@ public abstract class AbstractTask implements TaskInternal, DynamicObjectAware {
 
     @Override
     public Project getProject() {
+        boolean isInstantExecutionEnabled = !System.getProperty("org.gradle.unsafe.instant-execution", "false").equals("false");
+        if (isInstantExecutionEnabled && state.getExecuting()) {
+            throw new InvalidUserCodeException("Can't use Task.getProject() at task execution time!");
+        }
         return project;
     }
 
