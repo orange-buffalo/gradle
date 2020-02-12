@@ -30,12 +30,20 @@ class InstantExecutionClassLoaderCachingIntegrationTest extends PersistentBuildP
             staticDataLib,
             StaticData: """
                 import org.gradle.api.*;
+                import org.gradle.api.provider.*;
                 import org.gradle.api.tasks.*;
                 import java.util.concurrent.atomic.AtomicInteger;
 
-                public class StaticData extends DefaultTask {
+                public abstract class StaticData extends DefaultTask {
 
                     private static final AtomicInteger value = new AtomicInteger(0);
+
+                    @Input
+                    abstract Property<String> getProjectName();
+
+                    public StaticData() {
+                        getProjectName().value(getProject().getName());
+                    }
 
                     @TaskAction
                     void printValue() {
@@ -43,7 +51,7 @@ class InstantExecutionClassLoaderCachingIntegrationTest extends PersistentBuildP
                         // the 1st run should print `<project name>.value = 1`
                         // the 2nd run should print `<project name>.value = 2`
                         // and so on.
-                        System.out.println(getProject().getName() + ".value = " + value.incrementAndGet());
+                        System.out.println(getProjectName().get() + ".value = " + value.incrementAndGet());
                     }
                 }
             """
