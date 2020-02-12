@@ -50,7 +50,7 @@ object TextResourceCodec : Codec<TextResource> {
             }
             is FileCollectionBackedTextResource -> {
                 writeSmallInt(FILE_COLLECTION)
-                writeFile(value.inputFiles!!.singleFile)
+                writeFile(value.inputFiles.singleFile)
                 writeString(value.charset.name())
             }
             is ClasspathBackedTextResource -> {
@@ -64,7 +64,7 @@ object TextResourceCodec : Codec<TextResource> {
                 writeString(value.asString())
             }
             else -> {
-                writeSmallInt(OTHER)
+                writeSmallInt(UNKNOWN)
                 write(value)
             }
         }
@@ -100,5 +100,5 @@ object TextResourceCodec : Codec<TextResource> {
     const val STRING = 5
 
     private
-    const val OTHER = 0
+    const val UNKNOWN = 0
 }
