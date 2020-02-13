@@ -23,7 +23,6 @@ import org.gradle.api.file.FileCollection;
 import org.gradle.api.file.FileTree;
 import org.gradle.api.logging.LogLevel;
 import org.gradle.api.logging.Logger;
-import org.gradle.api.model.ObjectFactory;
 import org.gradle.api.tasks.Classpath;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputFiles;
@@ -73,7 +72,7 @@ public class JsHint extends SourceTask {
 
     @Classpath
     public FileCollection getRhinoClasspath() {
-        return getServices().get(ObjectFactory.class).fileCollection().from(rhinoClasspath);
+        return getObjectFactory().fileCollection().from(rhinoClasspath);
     }
 
     /**
@@ -92,7 +91,7 @@ public class JsHint extends SourceTask {
     @PathSensitive(PathSensitivity.RELATIVE)
     @InputFiles
     public FileCollection getJsHint() {
-        return getServices().get(ObjectFactory.class).fileCollection().from(jsHint);
+        return getObjectFactory().fileCollection().from(jsHint);
     }
 
     /**

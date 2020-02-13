@@ -95,7 +95,7 @@ public class GroovyCompile extends AbstractCompile {
     private File sourceClassesMappingFile;
 
     public GroovyCompile() {
-        ObjectFactory objectFactory = getServices().get(ObjectFactory.class);
+        ObjectFactory objectFactory = getObjectFactory();
         CompileOptions compileOptions = objectFactory.newInstance(CompileOptions.class);
         compileOptions.setIncremental(false);
         this.compileOptions = compileOptions;
@@ -291,12 +291,12 @@ public class GroovyCompile extends AbstractCompile {
         spec.setSourcesRoots(sourceRoots);
         spec.setSourceFiles(stableSourcesAsFileTree);
         spec.setDestinationDir(getDestinationDirectory().getAsFile().get());
-        spec.setWorkingDir(getServices().get(ProjectLayout.class).getProjectDirectory().getAsFile());
+        spec.setWorkingDir(getProjectLayout().getProjectDirectory().getAsFile());
         spec.setTempDir(getTemporaryDir());
         spec.setCompileClasspath(ImmutableList.copyOf(determineGroovyCompileClasspath()));
         spec.setSourceCompatibility(getSourceCompatibility());
         spec.setTargetCompatibility(getTargetCompatibility());
-        spec.setAnnotationProcessorPath(Lists.newArrayList(compileOptions.getAnnotationProcessorPath() == null ? getServices().get(ProjectLayout.class).files() : compileOptions.getAnnotationProcessorPath()));
+        spec.setAnnotationProcessorPath(Lists.newArrayList(compileOptions.getAnnotationProcessorPath() == null ? getProjectLayout().files() : compileOptions.getAnnotationProcessorPath()));
         spec.setGroovyClasspath(Lists.newArrayList(getGroovyClasspath()));
         spec.setCompileOptions(compileOptions);
         spec.setGroovyCompileOptions(groovyCompileOptions);

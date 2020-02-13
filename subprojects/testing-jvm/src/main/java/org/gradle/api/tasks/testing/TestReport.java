@@ -83,7 +83,7 @@ public class TestReport extends DefaultTask {
     }
 
     private void addTo(Object result, UnionFileCollection dirs) {
-        ObjectFactory objects = getServices().get(ObjectFactory.class);
+        ObjectFactory objects = getObjectFactory();
         if (result instanceof Test) {
             Test test = (Test) result;
             dirs.addToUnion(objects.fileCollection().from(test.getBinaryResultsDirectory()).builtBy(test));
