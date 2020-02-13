@@ -27,7 +27,6 @@ import org.gradle.api.file.FileCopyDetails;
 import org.gradle.api.internal.file.collections.FileTreeAdapter;
 import org.gradle.api.internal.file.collections.GeneratedSingletonFileTree;
 import org.gradle.api.internal.file.copy.CopySpecInternal;
-import org.gradle.api.model.ObjectFactory;
 import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.Internal;
@@ -43,7 +42,6 @@ import org.gradle.util.ConfigureUtil;
 import org.gradle.util.GUtil;
 
 import javax.annotation.Nullable;
-import javax.inject.Inject;
 import java.io.File;
 import java.io.OutputStreamWriter;
 import java.util.concurrent.Callable;
@@ -132,11 +130,6 @@ public class Ear extends Jar {
             setDeploymentDescriptor(null);
             details.setDuplicatesStrategy(DuplicatesStrategy.EXCLUDE);
         }
-    }
-
-    @Inject
-    protected ObjectFactory getObjectFactory() {
-        throw new UnsupportedOperationException();
     }
 
     /**

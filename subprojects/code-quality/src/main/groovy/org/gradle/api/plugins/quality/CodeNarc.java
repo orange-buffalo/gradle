@@ -21,7 +21,6 @@ import org.gradle.api.Incubating;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.file.FileTree;
 import org.gradle.api.internal.project.IsolatedAntBuilder;
-import org.gradle.api.model.ObjectFactory;
 import org.gradle.api.plugins.quality.internal.CodeNarcInvoker;
 import org.gradle.api.plugins.quality.internal.CodeNarcReportsImpl;
 import org.gradle.api.reporting.Reporting;
@@ -90,11 +89,6 @@ public class CodeNarc extends SourceTask implements VerificationTask, Reporting<
      */
     public void setConfigFile(File configFile) {
         setConfig(getProject().getResources().getText().fromFile(configFile));
-    }
-
-    @Inject
-    protected ObjectFactory getObjectFactory() {
-        throw new UnsupportedOperationException();
     }
 
     @Inject

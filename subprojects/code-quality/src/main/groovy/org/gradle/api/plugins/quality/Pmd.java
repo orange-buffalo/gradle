@@ -80,11 +80,6 @@ public class Pmd extends SourceTask implements VerificationTask, Reporting<PmdRe
     }
 
     @Inject
-    protected ObjectFactory getObjectFactory() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Inject
     public IsolatedAntBuilder getAntBuilder() {
         throw new UnsupportedOperationException();
     }

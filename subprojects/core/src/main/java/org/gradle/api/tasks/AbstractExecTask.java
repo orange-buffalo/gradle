@@ -17,7 +17,6 @@ package org.gradle.api.tasks;
 
 import org.gradle.api.Incubating;
 import org.gradle.api.internal.ConventionTask;
-import org.gradle.api.model.ObjectFactory;
 import org.gradle.api.provider.Property;
 import org.gradle.api.provider.Provider;
 import org.gradle.process.CommandLineArgumentProvider;
@@ -49,11 +48,6 @@ public abstract class AbstractExecTask<T extends AbstractExecTask> extends Conve
         execAction = getExecActionFactory().newExecAction();
         execResult = getObjectFactory().property(ExecResult.class);
         this.taskType = taskType;
-    }
-
-    @Inject
-    protected ObjectFactory getObjectFactory() {
-        throw new UnsupportedOperationException();
     }
 
     @Inject

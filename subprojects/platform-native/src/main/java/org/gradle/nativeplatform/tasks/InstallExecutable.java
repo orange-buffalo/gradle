@@ -20,7 +20,6 @@ import org.gradle.api.file.ConfigurableFileCollection;
 import org.gradle.api.file.Directory;
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.file.FileCollection;
-import org.gradle.api.file.FileSystemOperations;
 import org.gradle.api.file.RegularFile;
 import org.gradle.api.file.RegularFileProperty;
 import org.gradle.api.model.ObjectFactory;
@@ -185,11 +184,6 @@ public class InstallExecutable extends DefaultTask {
 
     @Inject
     protected FileSystem getFileSystem() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Inject
-    protected FileSystemOperations getFileSystemOperations() {
         throw new UnsupportedOperationException();
     }
 

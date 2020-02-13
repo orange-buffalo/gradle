@@ -22,7 +22,6 @@ import org.gradle.api.Action;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.file.CopySpec;
 import org.gradle.api.file.DirectoryProperty;
-import org.gradle.api.file.FileSystemOperations;
 import org.gradle.api.file.RegularFile;
 import org.gradle.api.file.RegularFileProperty;
 import org.gradle.api.model.ObjectFactory;
@@ -71,11 +70,6 @@ public class InstallXCTestBundle extends DefaultTask {
 
     @Inject
     protected FileSystem getFileSystem() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Inject
-    protected FileSystemOperations getFileSystemOperations() {
         throw new UnsupportedOperationException();
     }
 

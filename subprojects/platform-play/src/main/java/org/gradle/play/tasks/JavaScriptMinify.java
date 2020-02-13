@@ -20,7 +20,6 @@ import com.google.common.collect.Lists;
 import org.gradle.api.Action;
 import org.gradle.api.Incubating;
 import org.gradle.api.file.CopySpec;
-import org.gradle.api.file.FileSystemOperations;
 import org.gradle.api.file.FileTree;
 import org.gradle.api.file.FileVisitDetails;
 import org.gradle.api.file.FileVisitor;
@@ -59,11 +58,6 @@ public class JavaScriptMinify extends SourceTask {
 
     public JavaScriptMinify() {
         this.include("**/*.js");
-    }
-
-    @Inject
-    protected FileSystemOperations getFileSystemOperations() {
-        throw new UnsupportedOperationException();
     }
 
     /**

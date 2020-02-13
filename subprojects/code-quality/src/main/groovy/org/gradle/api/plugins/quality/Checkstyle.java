@@ -23,7 +23,6 @@ import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.file.FileTree;
 import org.gradle.api.internal.project.IsolatedAntBuilder;
-import org.gradle.api.model.ObjectFactory;
 import org.gradle.api.plugins.quality.internal.CheckstyleInvoker;
 import org.gradle.api.plugins.quality.internal.CheckstyleReportsImpl;
 import org.gradle.api.provider.Provider;
@@ -86,11 +85,6 @@ public class Checkstyle extends SourceTask implements VerificationTask, Reportin
     public Checkstyle() {
         configDirectory = getObjectFactory().directoryProperty();
         reports = getObjectFactory().newInstance(CheckstyleReportsImpl.class, this);
-    }
-
-    @Inject
-    protected ObjectFactory getObjectFactory() {
-        throw new UnsupportedOperationException();
     }
 
     @Inject

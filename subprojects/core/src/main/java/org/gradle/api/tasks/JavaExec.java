@@ -22,7 +22,6 @@ import org.gradle.api.Incubating;
 import org.gradle.api.JavaVersion;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.internal.ConventionTask;
-import org.gradle.api.model.ObjectFactory;
 import org.gradle.api.provider.Property;
 import org.gradle.api.provider.Provider;
 import org.gradle.api.tasks.options.Option;
@@ -108,11 +107,6 @@ public class JavaExec extends ConventionTask implements JavaExecSpec {
     public JavaExec() {
         javaExecHandleBuilder = getDslExecActionFactory().newDecoratedJavaExecAction();
         execResult = getObjectFactory().property(ExecResult.class);
-    }
-
-    @Inject
-    protected ObjectFactory getObjectFactory() {
-        throw new UnsupportedOperationException();
     }
 
     @Inject

@@ -25,7 +25,6 @@ import org.gradle.api.internal.ConventionTask;
 import org.gradle.api.internal.artifacts.ivyservice.ivyresolve.strategy.VersionComparator;
 import org.gradle.api.internal.artifacts.ivyservice.ivyresolve.strategy.VersionParser;
 import org.gradle.api.internal.artifacts.ivyservice.ivyresolve.strategy.VersionSelectorScheme;
-import org.gradle.api.model.ObjectFactory;
 import org.gradle.api.reporting.Reporting;
 import org.gradle.api.reporting.dependencies.internal.DefaultDependencyReportContainer;
 import org.gradle.api.reporting.dependencies.internal.HtmlDependencyReporter;
@@ -94,11 +93,6 @@ public class HtmlDependencyReportTask extends ConventionTask implements Reportin
     public DependencyReportContainer reports(Action<? super DependencyReportContainer> configureAction) {
         configureAction.execute(reports);
         return reports;
-    }
-
-    @Inject
-    protected ObjectFactory getObjectFactory() {
-        throw new UnsupportedOperationException();
     }
 
     @Inject
