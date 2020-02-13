@@ -16,6 +16,7 @@
 
 package org.gradle.api;
 
+import org.gradle.api.file.ProjectLayout;
 import org.gradle.api.internal.AbstractTask;
 import org.gradle.api.model.ObjectFactory;
 import org.gradle.internal.extensibility.NoConventionMapping;
@@ -37,6 +38,18 @@ public class DefaultTask extends AbstractTask {
     @Inject
     @Incubating
     protected ObjectFactory getObjectFactory() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Provides access to various important directories for this project.
+     *
+     * @return the project layout
+     * @since 6.3
+     */
+    @Inject
+    @Incubating
+    protected ProjectLayout getProjectLayout() {
         throw new UnsupportedOperationException();
     }
 }
