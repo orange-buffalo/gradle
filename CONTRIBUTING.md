@@ -60,22 +60,6 @@ You require IntelliJ 2018.3.1 or newer.
 
 NOTE: Due to the project size, the initial import can take a while and IntelliJ might become unresponsive for several seconds during this period.
 
-### Eclipse
-
-You can generate the Eclipse projects by running
-
-    ./gradlew eclipse
-
-Then you can import the generated projects into Eclipse
-
-1. Install Eclipse 4.5 (Mars) at least
-2. Install the Groovy Eclipse plugin from http://dist.springsource.org/snapshot/GRECLIPSE/e4.5/
-3. Make sure you have a Java 8 compatible JDK configured in your workspace
-4. In `Window->Preferences->Groovy->Compiler`, check `Enable Script folder support` and add `**/*.gradle`
-5. Import all projects using the "Import Existing Projects into Workspace" wizard
-
-
-
 ### Code Change Guidelines
 
 All code contributions should contain the following:
