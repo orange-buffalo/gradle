@@ -21,6 +21,7 @@ import org.gradle.api.file.ProjectLayout;
 import org.gradle.api.internal.AbstractTask;
 import org.gradle.api.model.ObjectFactory;
 import org.gradle.internal.extensibility.NoConventionMapping;
+import org.gradle.process.ExecOperations;
 
 import javax.inject.Inject;
 
@@ -63,6 +64,18 @@ public class DefaultTask extends AbstractTask {
     @Inject
     @Incubating
     protected FileSystemOperations getFileSystemOperations() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Provides access to various process execution operations.
+     *
+     * @return the file system operations
+     * @since 6.3
+     */
+    @Inject
+    @Incubating
+    protected ExecOperations getExecOperations() {
         throw new UnsupportedOperationException();
     }
 }
