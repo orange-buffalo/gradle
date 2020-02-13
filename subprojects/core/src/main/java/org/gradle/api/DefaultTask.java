@@ -17,11 +17,26 @@
 package org.gradle.api;
 
 import org.gradle.api.internal.AbstractTask;
+import org.gradle.api.model.ObjectFactory;
 import org.gradle.internal.extensibility.NoConventionMapping;
+
+import javax.inject.Inject;
 
 /**
  * {@code DefaultTask} is the standard {@link Task} implementation. You can extend this to implement your own task types.
  */
 @NoConventionMapping
 public class DefaultTask extends AbstractTask {
+
+    /**
+     * Provides access to methods to create various kinds of model objects.
+     *
+     * @return the object factory
+     * @since 6.3
+     */
+    @Inject
+    @Incubating
+    protected ObjectFactory getObjectFactory() {
+        throw new UnsupportedOperationException();
+    }
 }
