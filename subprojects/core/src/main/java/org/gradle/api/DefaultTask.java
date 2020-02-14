@@ -20,6 +20,7 @@ import org.gradle.api.file.FileSystemOperations;
 import org.gradle.api.file.ProjectLayout;
 import org.gradle.api.internal.AbstractTask;
 import org.gradle.api.model.ObjectFactory;
+import org.gradle.api.tasks.Internal;
 import org.gradle.internal.extensibility.NoConventionMapping;
 import org.gradle.process.ExecOperations;
 
@@ -38,6 +39,7 @@ public class DefaultTask extends AbstractTask {
      * @since 6.3
      */
     @Inject
+    @Internal
     @Incubating
     protected ObjectFactory getObjectFactory() {
         throw new UnsupportedOperationException();
@@ -50,6 +52,7 @@ public class DefaultTask extends AbstractTask {
      * @since 6.3
      */
     @Inject
+    @Internal
     @Incubating
     protected ProjectLayout getProjectLayout() {
         throw new UnsupportedOperationException();
@@ -62,6 +65,7 @@ public class DefaultTask extends AbstractTask {
      * @since 6.3
      */
     @Inject
+    @Internal
     @Incubating
     protected FileSystemOperations getFileSystemOperations() {
         throw new UnsupportedOperationException();
@@ -74,6 +78,7 @@ public class DefaultTask extends AbstractTask {
      * @since 6.3
      */
     @Inject
+    @Internal
     @Incubating
     protected ExecOperations getExecOperations() {
         throw new UnsupportedOperationException();
