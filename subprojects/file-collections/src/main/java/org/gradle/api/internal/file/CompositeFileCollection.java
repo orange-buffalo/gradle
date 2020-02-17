@@ -26,7 +26,9 @@ import org.gradle.api.internal.file.collections.FileCollectionResolveContext;
 import org.gradle.api.internal.tasks.TaskDependencyContainer;
 import org.gradle.api.internal.tasks.TaskDependencyResolveContext;
 import org.gradle.api.specs.Spec;
+import org.gradle.api.tasks.util.PatternSet;
 import org.gradle.api.tasks.util.internal.PatternSets;
+import org.gradle.internal.Factory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,6 +48,13 @@ import java.util.Set;
  * <p>The dependencies of this collection are calculated from the result of calling {@link #visitDependencies(TaskDependencyResolveContext)}.</p>
  */
 public abstract class CompositeFileCollection extends AbstractFileCollection implements FileCollectionContainer, TaskDependencyContainer {
+    public CompositeFileCollection(Factory<PatternSet> patternSetFactory) {
+        super(patternSetFactory);
+    }
+
+    public CompositeFileCollection() {
+    }
+
     @Override
     public Set<File> getFiles() {
         return getFiles(getSourceCollections());
