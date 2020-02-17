@@ -71,12 +71,12 @@ public class DefaultFileCollectionFactory implements FileCollectionFactory {
 
     @Override
     public ConfigurableFileCollection configurableFiles() {
-        return new DefaultConfigurableFileCollection(null, fileResolver, taskDependencyFactory, Collections.emptyList());
+        return new DefaultConfigurableFileCollection(null, fileResolver, taskDependencyFactory, patternSetFactory, Collections.emptyList());
     }
 
     @Override
     public ConfigurableFileCollection configurableFiles(String displayName) {
-        return new DefaultConfigurableFileCollection(displayName, fileResolver, taskDependencyFactory, Collections.emptyList());
+        return new DefaultConfigurableFileCollection(displayName, fileResolver, taskDependencyFactory, patternSetFactory, Collections.emptyList());
     }
 
     @Override

@@ -77,6 +77,11 @@ class CompositeFileTreeTest extends Specification {
 
         when:
         FileTree filtered = tree.matching(action)
+
+        then: // action is applied each time the contents are queried
+        0 * _
+
+        when:
         def sourceCollections = (filtered as CompositeFileTree).sourceCollections
 
         then:

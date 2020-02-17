@@ -154,7 +154,7 @@ public abstract class AbstractFileCollection implements FileCollectionInternal {
 
     @Override
     public FileCollection minus(final FileCollection collection) {
-        return new AbstractFileCollection() {
+        return new AbstractFileCollection(patternSetFactory) {
             @Override
             public String getDisplayName() {
                 return AbstractFileCollection.this.getDisplayName();
@@ -239,7 +239,7 @@ public abstract class AbstractFileCollection implements FileCollectionInternal {
     @Override
     public FileCollection filter(final Spec<? super File> filterSpec) {
         final Predicate<File> predicate = filterSpec::isSatisfiedBy;
-        return new AbstractFileCollection() {
+        return new AbstractFileCollection(patternSetFactory) {
             @Override
             public String getDisplayName() {
                 return AbstractFileCollection.this.getDisplayName();

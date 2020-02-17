@@ -155,7 +155,7 @@ public abstract class CompositeFileCollection extends AbstractFileCollection imp
     }
 
     protected List<? extends FileCollectionInternal> getSourceCollections() {
-        DefaultFileCollectionResolveContext context = new DefaultFileCollectionResolveContext(PatternSets.getNonCachingPatternSetFactory());
+        DefaultFileCollectionResolveContext context = new DefaultFileCollectionResolveContext(patternSetFactory);
         visitContents(context);
         return context.resolveAsFileCollections();
     }
