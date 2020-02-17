@@ -100,7 +100,7 @@ class Codecs(
     transformListener: ArtifactTransformListener,
     valueSourceProviderFactory: ValueSourceProviderFactory,
     patternSetFactory: Factory<PatternSet>
-    ) {
+) {
 
     val userTypesCodec = BindingsBackedCodec {
 
