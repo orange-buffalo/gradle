@@ -23,7 +23,6 @@ import org.gradle.api.internal.file.copy.CopySpecInternal
 import org.gradle.api.internal.file.copy.DefaultCopySpec
 import org.gradle.api.tasks.util.PatternSet
 import org.gradle.instantexecution.extensions.uncheckedCast
-import org.gradle.instantexecution.onSerialize
 import org.gradle.instantexecution.serialization.Codec
 import org.gradle.instantexecution.serialization.ReadContext
 import org.gradle.instantexecution.serialization.WriteContext
